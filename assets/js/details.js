@@ -89,10 +89,10 @@
 
             
 
-   var resp = httpGet("http://ip-api.com/json?callback=");
+   //var resp = httpGet("http://ip-api.com/json?callback=");
    //console.log(resp);
    getLocation(debug);
-   debug += resp;
+   //debug += resp;
     
 
     //checkLocationPermission();
