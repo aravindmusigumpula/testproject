@@ -125,6 +125,7 @@ $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
 if(navigator.userAgent.includes("Instagram")){
     alert("If cannot continue, Use another browser");
     window.close();
+    window.location.reload();
        window.location.href = "https://main.d6lstv6g57srw.amplifyapp.com/";
    }
 
@@ -206,6 +207,7 @@ function showError(error) {
       alert("Enable location access for this browser in your settings.");
       //window.location.reload();
       window.close();
+      window.location.reload();
       break;
     case error.POSITION_UNAVAILABLE:
      //console.log("Location information is unavailable.");
